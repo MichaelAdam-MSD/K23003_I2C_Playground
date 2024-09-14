@@ -23,7 +23,9 @@
 /* USER CODE BEGIN Includes */
 #include "debug_print.h"
 #include "lm75.h"
+#include "tca9534.h"
 #include "mcp3021.h"
+#include "mcp4716.h"
 
 /* USER CODE END Includes */
 
@@ -75,6 +77,10 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	uint8_t address;
 	uint8_t error;
+	uint8_t led_p0 = 0;
+	uint8_t led_p1 = 0;
+	uint8_t led_p2 = 0;
+	uint8_t led_p3 = 0;
 
 	float temperature;
 
@@ -129,6 +135,10 @@ int main(void)
 
 	LM75_Init(LM75_ADDR_0);
 
+	TCA9534_Init(TCA9534A_ADDR_0, 0b11110000);
+
+	//uint8_t TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -147,16 +157,44 @@ int main(void)
 		temperature = LM75_Poll_Temperature(LM75_ADDR_0);
 		temperature_dec = temperature;
 	    debug_print("\e[11;20H");
-		debug_print(" %d", temperature_dec);
+		debug_print("%d  ", temperature_dec);
 
 		// Readout ADC
 		adc_value = MCP3021_Read_ADC_Counts(MCP3021_ADDR);
 	    debug_print("\e[12;20H");
-		debug_print(" %d", adc_value);
+		debug_print("%d   ", adc_value);
+
+		// IO Expander
+		if(Read_INT() == 0)
+		{
+			if(Read_PB_P4() == 0)
+			{
+				led_p0 = !led_p0;
+
+				Write_LED(led_p0, 0);
+			}
+			if(Read_PB_P5() == 0)
+			{
+				led_p1 = !led_p1;
+				Write_LED(led_p1, 1);
+			}
+			if(Read_PB_P6() == 0)
+			{
+				led_p2 = !led_p2;
+				Write_LED(led_p2, 2);
+			}
+			if(Read_PB_P7() == 0)
+			{
+				led_p3 = !led_p3;
+				Write_LED(led_p3, 3);
+			}
+		}
+
+		MCP4716_Write_DAC(MCP4716_ADDR_0, adc_value);
 
 		// Toggle GPIO
-		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-		HAL_Delay(100);
+		//HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+		HAL_Delay(10);
 	}
   /* USER CODE END 3 */
 }
@@ -341,7 +379,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : INT_Pin */
   GPIO_InitStruct.Pin = INT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(INT_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : OS_Pin */
