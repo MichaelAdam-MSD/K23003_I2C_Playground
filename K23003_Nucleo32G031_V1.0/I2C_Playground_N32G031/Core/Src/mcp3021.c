@@ -26,6 +26,17 @@ extern I2C_HandleTypeDef MCP3021_I2C_HANDLER;
 // Local Function Prototypes
 
 // Functions
+ErrorStatus MCP3021_Init(uint8_t device_addr)
+{
+	if (HAL_I2C_IsDeviceReady(&MCP3021_I2C_HANDLER, device_addr, 3, 20000) != HAL_OK)
+	{
+		// Return error
+		return ERROR;
+	}
+
+	return SUCCESS;
+}
+
 uint16_t MCP3021_Read_ADC_Counts(uint8_t device_addr)
 {
 	uint8_t buf[2];

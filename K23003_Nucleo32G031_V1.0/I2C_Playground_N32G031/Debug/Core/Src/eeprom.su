@@ -1,0 +1,6 @@
+../Core/Src/eeprom.c:22:13:M24C0X_Init	16	static
+../Core/Src/eeprom.c:33:13:M24C0X_Write_2Byte	40	static
+../Core/Src/eeprom.c:47:13:M24C0X_Write_Byte	40	static
+../Core/Src/eeprom.c:59:9:M24C0X_Read_Byte	40	static
+../Core/Src/eeprom.c:71:10:M24C0X_Read_Word	40	static
+../Core/Src/eeprom.c:87:6:M24C0X_Write_Word	32	static

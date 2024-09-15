@@ -1,4 +1,5 @@
 "./Core/Src/debug_print.o"
+"./Core/Src/eeprom.o"
 "./Core/Src/lm75.o"
 "./Core/Src/main.o"
 "./Core/Src/mcp3021.o"

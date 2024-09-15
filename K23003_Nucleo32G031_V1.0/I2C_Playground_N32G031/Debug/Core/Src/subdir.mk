@@ -6,6 +6,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/debug_print.c \
+../Core/Src/eeprom.c \
 ../Core/Src/lm75.c \
 ../Core/Src/main.c \
 ../Core/Src/mcp3021.c \
@@ -19,6 +20,7 @@ C_SRCS += \
 
 OBJS += \
 ./Core/Src/debug_print.o \
+./Core/Src/eeprom.o \
 ./Core/Src/lm75.o \
 ./Core/Src/main.o \
 ./Core/Src/mcp3021.o \
@@ -32,6 +34,7 @@ OBJS += \
 
 C_DEPS += \
 ./Core/Src/debug_print.d \
+./Core/Src/eeprom.d \
 ./Core/Src/lm75.d \
 ./Core/Src/main.d \
 ./Core/Src/mcp3021.d \
@@ -51,7 +54,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/debug_print.cyclo ./Core/Src/debug_print.d ./Core/Src/debug_print.o ./Core/Src/debug_print.su ./Core/Src/lm75.cyclo ./Core/Src/lm75.d ./Core/Src/lm75.o ./Core/Src/lm75.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mcp3021.cyclo ./Core/Src/mcp3021.d ./Core/Src/mcp3021.o ./Core/Src/mcp3021.su ./Core/Src/mcp4716.cyclo ./Core/Src/mcp4716.d ./Core/Src/mcp4716.o ./Core/Src/mcp4716.su ./Core/Src/stm32g0xx_hal_msp.cyclo ./Core/Src/stm32g0xx_hal_msp.d ./Core/Src/stm32g0xx_hal_msp.o ./Core/Src/stm32g0xx_hal_msp.su ./Core/Src/stm32g0xx_it.cyclo ./Core/Src/stm32g0xx_it.d ./Core/Src/stm32g0xx_it.o ./Core/Src/stm32g0xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g0xx.cyclo ./Core/Src/system_stm32g0xx.d ./Core/Src/system_stm32g0xx.o ./Core/Src/system_stm32g0xx.su ./Core/Src/tca9534.cyclo ./Core/Src/tca9534.d ./Core/Src/tca9534.o ./Core/Src/tca9534.su
+	-$(RM) ./Core/Src/debug_print.cyclo ./Core/Src/debug_print.d ./Core/Src/debug_print.o ./Core/Src/debug_print.su ./Core/Src/eeprom.cyclo ./Core/Src/eeprom.d ./Core/Src/eeprom.o ./Core/Src/eeprom.su ./Core/Src/lm75.cyclo ./Core/Src/lm75.d ./Core/Src/lm75.o ./Core/Src/lm75.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mcp3021.cyclo ./Core/Src/mcp3021.d ./Core/Src/mcp3021.o ./Core/Src/mcp3021.su ./Core/Src/mcp4716.cyclo ./Core/Src/mcp4716.d ./Core/Src/mcp4716.o ./Core/Src/mcp4716.su ./Core/Src/stm32g0xx_hal_msp.cyclo ./Core/Src/stm32g0xx_hal_msp.d ./Core/Src/stm32g0xx_hal_msp.o ./Core/Src/stm32g0xx_hal_msp.su ./Core/Src/stm32g0xx_it.cyclo ./Core/Src/stm32g0xx_it.d ./Core/Src/stm32g0xx_it.o ./Core/Src/stm32g0xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32g0xx.cyclo ./Core/Src/system_stm32g0xx.d ./Core/Src/system_stm32g0xx.o ./Core/Src/system_stm32g0xx.su ./Core/Src/tca9534.cyclo ./Core/Src/tca9534.d ./Core/Src/tca9534.o ./Core/Src/tca9534.su
 
 .PHONY: clean-Core-2f-Src
 

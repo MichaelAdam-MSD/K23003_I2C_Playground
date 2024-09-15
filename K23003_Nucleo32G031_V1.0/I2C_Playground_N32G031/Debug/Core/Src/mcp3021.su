@@ -1,1 +1,2 @@
-../Core/Src/mcp3021.c:29:10:MCP3021_Read_ADC_Counts	40	static
+../Core/Src/mcp3021.c:29:13:MCP3021_Init	16	static
+../Core/Src/mcp3021.c:40:10:MCP3021_Read_ADC_Counts	40	static

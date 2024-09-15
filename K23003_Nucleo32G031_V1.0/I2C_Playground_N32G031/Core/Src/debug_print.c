@@ -12,7 +12,8 @@ extern UART_HandleTypeDef huart2;
 char tx_buf[TX_BUF_SIZE];
 
 // Use this instead of printf()
-void debug_print(char *format, ...) {
+void debug_print(char *format, ...)
+{
 	va_list args;
 	va_start(args, format);
 

@@ -31,7 +31,7 @@
 // Enumerators
 
 // Function Prototypes
-ErrorStatus MCP4716_Shutdown(uint8_t device_addr);
+ErrorStatus MCP4716_Init(uint8_t device_addr);
 
 void MCP4716_Write_DAC(uint8_t device_addr, uint16_t value);
 

@@ -25,6 +25,8 @@
 // Enumerators
 
 // Function Prototypes
+ErrorStatus MCP3021_Init(uint8_t device_addr);
+
 uint16_t MCP3021_Read_ADC_Counts(uint8_t device_addr);
 
 #endif //MCP3021_STM32

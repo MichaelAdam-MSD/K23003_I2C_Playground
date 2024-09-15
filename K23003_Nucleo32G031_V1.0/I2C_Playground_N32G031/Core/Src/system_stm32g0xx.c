@@ -158,9 +158,10 @@
  */
 uint32_t SystemCoreClock = 16000000UL;
 
-const uint32_t AHBPrescTable[16UL] = { 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
-		1UL, 2UL, 3UL, 4UL, 6UL, 7UL, 8UL, 9UL };
-const uint32_t APBPrescTable[8UL] = { 0UL, 0UL, 0UL, 0UL, 1UL, 2UL, 3UL, 4UL };
+const uint32_t AHBPrescTable[16UL] =
+{ 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, 1UL, 2UL, 3UL, 4UL, 6UL, 7UL, 8UL, 9UL };
+const uint32_t APBPrescTable[8UL] =
+{ 0UL, 0UL, 0UL, 0UL, 1UL, 2UL, 3UL, 4UL };
 
 /**
  * @}
@@ -183,7 +184,8 @@ const uint32_t APBPrescTable[8UL] = { 0UL, 0UL, 0UL, 0UL, 1UL, 2UL, 3UL, 4UL };
  * @param  None
  * @retval None
  */
-void SystemInit(void) {
+void SystemInit(void)
+{
 	/* Configure the Vector Table location -------------------------------------*/
 #if defined(USER_VECT_TAB_ADDRESS)
   SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation */
@@ -230,7 +232,8 @@ void SystemInit(void) {
  * @param  None
  * @retval None
  */
-void SystemCoreClockUpdate(void) {
+void SystemCoreClockUpdate(void)
+{
 	uint32_t tmp;
 	uint32_t pllvco;
 	uint32_t pllr;
@@ -239,7 +242,8 @@ void SystemCoreClockUpdate(void) {
 	uint32_t hsidiv;
 
 	/* Get SYSCLK source -------------------------------------------------------*/
-	switch (RCC->CFGR & RCC_CFGR_SWS) {
+	switch (RCC->CFGR & RCC_CFGR_SWS)
+	{
 	case RCC_CFGR_SWS_0: /* HSE used as system clock */
 		SystemCoreClock = HSE_VALUE;
 		break;
@@ -257,28 +261,25 @@ void SystemCoreClockUpdate(void) {
 		 SYSCLK = PLL_VCO / PLLR
 		 */
 		pllsource = (RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC);
-		pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_Pos)
-				+ 1UL;
+		pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_Pos) + 1UL;
 
 		if (pllsource == 0x03UL) /* HSE used as PLL clock source */
 		{
 			pllvco = (HSE_VALUE / pllm);
-		} else /* HSI used as PLL clock source */
+		}
+		else /* HSI used as PLL clock source */
 		{
 			pllvco = (HSI_VALUE / pllm);
 		}
-		pllvco = pllvco
-				* ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos);
-		pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos)
-				+ 1UL);
+		pllvco = pllvco * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos);
+		pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) + 1UL);
 
 		SystemCoreClock = pllvco / pllr;
 		break;
 
 	case 0x00000000U: /* HSI used as system clock */
 	default: /* HSI used as system clock */
-		hsidiv = (1UL
-				<< ((READ_BIT(RCC->CR, RCC_CR_HSIDIV)) >> RCC_CR_HSIDIV_Pos));
+		hsidiv = (1UL << ((READ_BIT(RCC->CR, RCC_CR_HSIDIV)) >> RCC_CR_HSIDIV_Pos));
 		SystemCoreClock = (HSI_VALUE / hsidiv);
 		break;
 	}

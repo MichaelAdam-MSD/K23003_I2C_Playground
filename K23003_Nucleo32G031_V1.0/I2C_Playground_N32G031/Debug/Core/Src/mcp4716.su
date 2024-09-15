@@ -1,2 +1,2 @@
-../Core/Src/mcp4716.c:29:13:MCP4716_Shutdown	24	static
-../Core/Src/mcp4716.c:35:6:MCP4716_Write_DAC	32	static
+../Core/Src/mcp4716.c:29:13:MCP4716_Init	16	static
+../Core/Src/mcp4716.c:40:6:MCP4716_Write_DAC	32	static

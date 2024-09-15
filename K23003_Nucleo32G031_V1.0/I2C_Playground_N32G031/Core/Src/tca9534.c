@@ -90,7 +90,7 @@ uint8_t TCA9534_Read_Output_Reg(uint8_t device_addr)
 // #########################################################
 uint8_t Read_PB_P4(void)
 {
-	uint8_t read_byte =	TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
+	uint8_t read_byte = TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
 
 	read_byte = read_byte & 0b00010000;
 
@@ -99,7 +99,7 @@ uint8_t Read_PB_P4(void)
 
 uint8_t Read_PB_P5(void)
 {
-	uint8_t read_byte =	TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
+	uint8_t read_byte = TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
 
 	read_byte = read_byte & 0b00100000;
 
@@ -108,7 +108,7 @@ uint8_t Read_PB_P5(void)
 
 uint8_t Read_PB_P6(void)
 {
-	uint8_t read_byte =	TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
+	uint8_t read_byte = TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
 
 	read_byte = read_byte & 0b01000000;
 
@@ -117,7 +117,7 @@ uint8_t Read_PB_P6(void)
 
 uint8_t Read_PB_P7(void)
 {
-	uint8_t read_byte =	TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
+	uint8_t read_byte = TCA9534_Read_Input_Reg(TCA9534A_ADDR_0);
 
 	read_byte = read_byte & 0b10000000;
 
@@ -133,14 +133,14 @@ void Write_LED(uint8_t state, uint8_t led_number)
 {
 	uint8_t reg_value = TCA9534_Read_Output_Reg(TCA9534A_ADDR_0);
 
-	reg_value = bit_config(reg_value, led_number,state);
+	reg_value = bit_config(reg_value, led_number, state);
 
 	TCA9534_Write_Output_Reg(TCA9534A_ADDR_0, reg_value);
 }
 
 uint32_t bit_config(uint32_t word, uint32_t bit_number, uint32_t bit_value)
 {
-    uint32_t word_temp = word;
-    word_temp ^= (-bit_value ^ word_temp) & (1 << bit_number);
-    return word_temp;
+	uint32_t word_temp = word;
+	word_temp ^= (-bit_value ^ word_temp) & (1 << bit_number);
+	return word_temp;
 }
